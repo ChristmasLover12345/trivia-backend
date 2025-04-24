@@ -52,12 +52,12 @@ builder.Services.AddAuthentication(options =>
         ValidIssuers = new[]
         {
             // remember to change these links to the actual webaddress of your API
-            "rideapi-egexbda9bpfgh6c9.westus-01.azurewebsites.net"
+            "http://localhost:5000"
         },
         // This is a list of all the places a token should be allowed to get used
         ValidAudiences = new[]
         {
-            "rideapi-egexbda9bpfgh6c9.westus-01.azurewebsites.net"
+            "http://localhost:5000"
         },
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)) // Secret key
     };
