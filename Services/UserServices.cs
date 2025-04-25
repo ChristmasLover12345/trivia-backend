@@ -91,7 +91,7 @@ namespace trivia_backend.Services
                 // Bearer Token: A token that grants access to a resource, such as an API. JWT can be used as a bearer token, but there are other types of tokens that can be used as a bearer token.
 
                 // Setting the string that will be encrypted int our JWT
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345superSecretKey@345"));
                 
                 // Now to encrypt our secret key
                 var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

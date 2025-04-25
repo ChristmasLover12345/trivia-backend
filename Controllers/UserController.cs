@@ -36,7 +36,7 @@ namespace trivia_backend.Controllers
 
         
         [HttpPost("login")]
-        public async Task<ActionResult<TokenDTO>> Login([FromBody] LoginDTO loginUser)
+        public async Task<ActionResult> Login([FromBody] LoginDTO loginUser)
         {
             var result = await _userServices.Login(loginUser);
 
