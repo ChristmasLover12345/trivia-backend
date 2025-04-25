@@ -24,10 +24,10 @@ namespace trivia_backend.Context
     {
         // One Quiz has many Questions
         modelBuilder.Entity<QuestionModel>()
-            .HasOne(q => q.Quiz)               // Navigation property
-            .WithMany(z => z.Questions)        // Collection in Quiz
-            .HasForeignKey(q => q.QuizId)      // Foreign key in Question
-            .OnDelete(DeleteBehavior.Cascade); // Optional: deletes questions if quiz is deleted
+            .HasOne(q => q.Quiz)               
+            .WithMany(z => z.Questions)        
+            .HasForeignKey(q => q.QuizId)      
+            .OnDelete(DeleteBehavior.Cascade); 
     }
 
     }

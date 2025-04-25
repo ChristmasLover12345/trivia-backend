@@ -16,6 +16,7 @@ namespace trivia_backend.Models
         public string? WinScore { get; set; }
         public string? WinMessage { get; set; }
         public string? LoseMessage { get; set; }
+        public Boolean IsDeleted { get; set; } = false;
 
         public  List<QuestionModel>? Questions { get; set; } 
     }
