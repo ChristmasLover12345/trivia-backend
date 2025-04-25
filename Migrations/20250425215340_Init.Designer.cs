@@ -11,7 +11,7 @@ using trivia_backend.Context;
 namespace trivia_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250425182006_Init")]
+    [Migration("20250425215340_Init")]
     partial class Init
     {
         /// <inheritdoc />
