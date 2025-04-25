@@ -13,10 +13,10 @@ namespace trivia_backend.Models
         public string? QuestionText { get; set; } 
         public int Score { get; set; } = 10;
 
-        public string CorrectAnswer { get; set; } = string.Empty;
-        public string WrongAnswer1 { get; set; } = string.Empty;
-        public string WrongAnswer2 { get; set; } = string.Empty;
-        public string WrongAnswer3 { get; set; } = string.Empty;
+        public string? CorrectAnswer { get; set; } 
+        public string? WrongAnswer1 { get; set; } 
+        public string? WrongAnswer2 { get; set; } 
+        public string? WrongAnswer3 { get; set; } 
 
         public QuizModel? Quiz { get; set; } 
 
