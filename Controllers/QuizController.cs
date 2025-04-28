@@ -11,7 +11,7 @@ namespace trivia_backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    
     public class QuizController : ControllerBase
     {
         private readonly QuizServices _quizServices;
@@ -47,6 +47,7 @@ namespace trivia_backend.Controllers
         }
 
         [HttpPost("CreateQuiz")]
+        [Authorize] 
         public async Task<IActionResult> CreateQuiz([FromBody] QuizModel quiz)
         {
             if (quiz == null)
@@ -70,6 +71,7 @@ namespace trivia_backend.Controllers
         }
 
         [HttpPut("UpdateQuiz")]
+        [Authorize]
         public async Task<IActionResult> UpdateQuiz([FromBody] QuizModel quiz)
         {
             if (quiz == null)
