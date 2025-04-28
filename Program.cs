@@ -8,6 +8,10 @@ using trivia_backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// REMEMBER TO CREATE AND CONNECT THE WEB APP
+
+
 // Add services to the container.
 builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<QuizServices>();
@@ -59,12 +63,12 @@ builder.Services.AddAuthentication(options =>
         ValidIssuers = new[]
         {
             // remember to change these links to the actual webaddress of your API
-            "http://localhost:5000"
+            "trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net"
         },
         // This is a list of all the places a token should be allowed to get used
         ValidAudiences = new[]
         {
-            "http://localhost:5000"
+            "trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net"
         },
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)) // Secret key
     };

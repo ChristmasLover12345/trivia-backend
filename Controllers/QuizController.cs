@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using trivia_backend.Models;
 using trivia_backend.Services;
@@ -10,9 +11,10 @@ namespace trivia_backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class QuizController : ControllerBase
     {
-          private readonly QuizServices _quizServices;
+        private readonly QuizServices _quizServices;
         public QuizController(QuizServices quizServices)
         {
             _quizServices = quizServices;

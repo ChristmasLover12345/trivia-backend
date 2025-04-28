@@ -99,10 +99,10 @@ namespace trivia_backend.Services
                 // Set the options for our token to define properties such as where the token is issued from, where it is allowed to be used, and how long it is valid for
                 var tokenOptions = new JwtSecurityToken(
                     // Issuer: where is this token allowed to be generated from
-                    issuer: "http://localhost:5000",
+                    issuer: "trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net",
                     // audience: where this token is allowed to authenticate.
                     // issuer and audience should be the same since our api os handling both login and authentication
-                    audience: "http://localhost:5000",
+                    audience: "trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net",
                     // Claims = additional options for authentication
                     claims: new List<Claim>(),
                     // Sets the token expiration date. in other words, this is what makes our tokens temporary, thus keeping our access to our rescources safe and secure
