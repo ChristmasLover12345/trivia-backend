@@ -54,7 +54,7 @@ namespace trivia_backend.Migrations
 
                     b.HasIndex("QuizId");
 
-                    b.ToTable("QuestionModel");
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("trivia_backend.Models.QuizModel", b =>
@@ -64,6 +64,9 @@ namespace trivia_backend.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -91,6 +94,8 @@ namespace trivia_backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatorId");
+
                     b.ToTable("Quizzes");
                 });
 
@@ -109,11 +114,12 @@ namespace trivia_backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserModel");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("trivia_backend.Models.QuestionModel", b =>
@@ -129,7 +135,23 @@ namespace trivia_backend.Migrations
 
             modelBuilder.Entity("trivia_backend.Models.QuizModel", b =>
                 {
+                    b.HasOne("trivia_backend.Models.UserModel", "Creator")
+                        .WithMany("Quizzes")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+                });
+
+            modelBuilder.Entity("trivia_backend.Models.QuizModel", b =>
+                {
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("trivia_backend.Models.UserModel", b =>
+                {
+                    b.Navigation("Quizzes");
                 });
 #pragma warning restore 612, 618
         }
