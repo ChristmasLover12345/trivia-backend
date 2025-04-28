@@ -9,7 +9,7 @@ namespace trivia_backend.Models
     {
         public int Id { get; set; }
        
-        public UserModel Creator { get; set; } 
+        public UserModel? Creator { get; set; } 
         public int CreatorId { get; set; } // Foreign key
 
         public string? Title { get; set; }
@@ -17,7 +17,7 @@ namespace trivia_backend.Models
         public string? ImageUrl { get; set; }
         public string? Difficulty { get; set; }
 
-        public string? WinScore { get; set; }
+        public int? WinScore { get; set; }
         public string? WinMessage { get; set; }
         public string? LoseMessage { get; set; }
         public Boolean IsDeleted { get; set; } 

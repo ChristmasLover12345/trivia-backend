@@ -36,7 +36,7 @@ namespace trivia_backend.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Difficulty = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WinScore = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WinScore = table.Column<int>(type: "int", nullable: true),
                     WinMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LoseMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)

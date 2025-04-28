@@ -18,7 +18,7 @@ namespace trivia_backend.Models
         public string? WrongAnswer2 { get; set; } 
         public string? WrongAnswer3 { get; set; } 
 
-        public QuizModel Quiz { get; set; } 
+        public QuizModel? Quiz { get; set; } 
 
 
     }
