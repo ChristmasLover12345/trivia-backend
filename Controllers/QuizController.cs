@@ -34,9 +34,9 @@ namespace trivia_backend.Controllers
         [HttpGet("GetQuizzesById/{id}")]
         public async Task<IActionResult> GetQuizzesById(int id)
         {
-            var quizzes = await _quizServices.GetQuizzesById(id);
+            var quizzes = await _quizServices.GetQuizzesByCreatorId(id);
 
-            if (quizzes == null )
+            if (quizzes == null || quizzes.Count == 0)
             {
                 return NotFound($"No quizzes found with ID {id}.");
             }
@@ -52,6 +52,11 @@ namespace trivia_backend.Controllers
                 return BadRequest("Quiz data is null.");
             }
 
+            if (quiz.CreatorId <= 0)
+            {
+                return BadRequest("Invalid Creator ID.");
+            }
+
             var result = await _quizServices.CreateQuiz(quiz);
 
             if (!result)
@@ -59,7 +64,7 @@ namespace trivia_backend.Controllers
                 return StatusCode(500, "An error occurred while creating the quiz.");
             }
 
-            return Ok(quiz);
+            return Ok(new { message = "Quiz created successfully." });
         }
 
         [HttpPut("UpdateQuiz")]
@@ -70,6 +75,11 @@ namespace trivia_backend.Controllers
                 return BadRequest("Quiz data is null.");
             }
 
+             if (quiz.CreatorId <= 0)
+            {
+                return BadRequest("Invalid Creator ID.");
+            }
+
             var result = await _quizServices.UpdateQuiz(quiz);
 
             if (!result)
@@ -77,7 +87,7 @@ namespace trivia_backend.Controllers
                 return StatusCode(500, "An error occurred while updating the quiz.");
             }
 
-            return Ok(quiz);
+            return Ok(new {message = "Quiz updated successfully."});
         }
 
     }

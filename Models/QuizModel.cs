@@ -8,6 +8,10 @@ namespace trivia_backend.Models
     public class QuizModel
     {
         public int Id { get; set; }
+       
+        public UserModel Creator { get; set; } 
+        public int CreatorId { get; set; } // Foreign key
+
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }
@@ -16,7 +20,7 @@ namespace trivia_backend.Models
         public string? WinScore { get; set; }
         public string? WinMessage { get; set; }
         public string? LoseMessage { get; set; }
-        public Boolean IsDeleted { get; set; } = false;
+        public Boolean IsDeleted { get; set; } 
 
         public  List<QuestionModel>? Questions { get; set; } 
     }

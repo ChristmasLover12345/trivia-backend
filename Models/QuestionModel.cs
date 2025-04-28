@@ -11,14 +11,14 @@ namespace trivia_backend.Models
         public int QuizId { get; set; } // Foreign key
 
         public string? QuestionText { get; set; } 
-        public int Score { get; set; } = 10;
+        public int Score { get; set; } 
 
         public string? CorrectAnswer { get; set; } 
         public string? WrongAnswer1 { get; set; } 
         public string? WrongAnswer2 { get; set; } 
         public string? WrongAnswer3 { get; set; } 
 
-        public QuizModel? Quiz { get; set; } 
+        public QuizModel Quiz { get; set; } 
 
 
     }

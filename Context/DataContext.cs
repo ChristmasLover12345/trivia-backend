@@ -17,7 +17,7 @@ namespace trivia_backend.Context
 
         public DbSet<UserModel> Users { get; set;}
         public DbSet<QuizModel> Quizzes { get; set;}
-        public DbSet<UserModel> Questions { get; set;}
+        public DbSet<QuestionModel> Questions { get; set;}
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +28,13 @@ namespace trivia_backend.Context
             .WithMany(z => z.Questions)        
             .HasForeignKey(q => q.QuizId)      
             .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<QuizModel>()
+            .HasOne(q => q.Creator)
+            .WithMany(u => u.Quizzes)
+            .HasForeignKey(q => q.CreatorId)
+            .OnDelete(DeleteBehavior.Cascade);
+
     }
 
     }
