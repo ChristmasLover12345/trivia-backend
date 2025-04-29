@@ -136,5 +136,7 @@ namespace trivia_backend.Services
 
         }
 
+
+        public async Task<UserModel> GetUserById(int id) => await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
     }
 }

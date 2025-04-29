@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using trivia_backend.Models;
 using trivia_backend.Models.DTOS;
 using trivia_backend.Services;
 
@@ -47,6 +48,17 @@ namespace trivia_backend.Controllers
             
 
             return Ok(result);
+        }
+
+        [HttpGet("GetUser/{id}")]
+        public async Task<ActionResult> GetUserById(int id)
+        {
+            var user = await _userServices.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+            return Ok(user);
         }
 
     }

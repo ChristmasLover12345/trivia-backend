@@ -38,9 +38,9 @@ namespace trivia_backend.Controllers
         {
             var quizzes = await _quizServices.GetQuizzesByCreatorId(id);
 
-            if (quizzes == null || quizzes.Count == 0)
+            if (quizzes == null )
             {
-                return NotFound($"No quizzes found with ID {id}.");
+                return NotFound($"No quizzes found with ID.");
             }
 
             return Ok(quizzes);
