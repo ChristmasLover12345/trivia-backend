@@ -16,9 +16,9 @@ namespace trivia_backend.Services
             _dataContext = dataContext;
         }
 
-        public async Task<List<QuizModel>> GetAllQuizzes() => await _dataContext.Quizzes.Include(q => q.Questions).Include(c => c.Creator).ToListAsync();
+        public async Task<List<QuizModel>> GetAllQuizzes() => await _dataContext.Quizzes.Include(q => q.Questions).ToListAsync();
 
-        public async Task<List<QuizModel>> GetQuizzesByCreatorId(int id) => await _dataContext.Quizzes.Where(q => q.CreatorId == id).Include(q => q.Questions).Include(c => c.Creator).ToListAsync();
+        public async Task<List<QuizModel>> GetQuizzesByCreatorId(int id) => await _dataContext.Quizzes.Where(q => q.CreatorId == id).Include(q => q.Questions).ToListAsync();
 
         public async Task<bool> CreateQuiz(QuizModel quiz)
         {

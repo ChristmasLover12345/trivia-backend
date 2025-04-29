@@ -20,22 +20,7 @@ namespace trivia_backend.Context
         public DbSet<QuestionModel> Questions { get; set;}
 
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        // One Quiz has many Questions
-        modelBuilder.Entity<QuestionModel>()
-            .HasOne(q => q.Quiz)               
-            .WithMany(z => z.Questions)        
-            .HasForeignKey(q => q.QuizId)      
-            .OnDelete(DeleteBehavior.Cascade); 
-
-            modelBuilder.Entity<QuizModel>()
-            .HasOne(q => q.Creator)
-            .WithMany(u => u.Quizzes)
-            .HasForeignKey(q => q.CreatorId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-    }
+   
 
     }
 }

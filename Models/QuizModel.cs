@@ -9,7 +9,6 @@ namespace trivia_backend.Models
     {
         public int Id { get; set; }
        
-        public UserModel? Creator { get; set; } 
         public int CreatorId { get; set; } // Foreign key
 
         public string? Title { get; set; }
