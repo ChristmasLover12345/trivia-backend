@@ -29,10 +29,10 @@ namespace trivia_backend.Controllers
 
             if (!result)
             {
-                return BadRequest("Username already exists or user creation failed.");
-            }
+                return BadRequest(new{ message = "Username already exists or user creation failed."});
+            } 
 
-            return Ok("User registered successfully.");
+            return Ok(new {message = "User registered successfully."});
         }
 
         
