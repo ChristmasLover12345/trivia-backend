@@ -39,17 +39,17 @@ namespace trivia_backend.Migrations
                     WinScore = table.Column<int>(type: "int", nullable: true),
                     WinMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LoseMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    UserModelId = table.Column<int>(type: "int", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Quizzes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Quizzes_Users_UserModelId",
-                        column: x => x.UserModelId,
+                        name: "FK_Quizzes_Users_CreatorId",
+                        column: x => x.CreatorId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,28 +64,28 @@ namespace trivia_backend.Migrations
                     CorrectAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WrongAnswer1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WrongAnswer2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WrongAnswer3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    QuizModelId = table.Column<int>(type: "int", nullable: true)
+                    WrongAnswer3 = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Questions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Questions_Quizzes_QuizModelId",
-                        column: x => x.QuizModelId,
+                        name: "FK_Questions_Quizzes_QuizId",
+                        column: x => x.QuizId,
                         principalTable: "Quizzes",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_QuizModelId",
+                name: "IX_Questions_QuizId",
                 table: "Questions",
-                column: "QuizModelId");
+                column: "QuizId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Quizzes_UserModelId",
+                name: "IX_Quizzes_CreatorId",
                 table: "Quizzes",
-                column: "UserModelId");
+                column: "CreatorId");
         }
 
         /// <inheritdoc />

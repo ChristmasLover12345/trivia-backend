@@ -84,15 +84,15 @@ namespace trivia_backend.Services
                 return result;
             }
 
-            if(VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash))
+            if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash))
             {
-                
+
                 // JWT: JSON web token = a type of token used for authentication or transfering information
                 // Bearer Token: A token that grants access to a resource, such as an API. JWT can be used as a bearer token, but there are other types of tokens that can be used as a bearer token.
 
                 // Setting the string that will be encrypted int our JWT
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345superSecretKey@345"));
-                
+
                 // Now to encrypt our secret key
                 var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
@@ -109,7 +109,7 @@ namespace trivia_backend.Services
                     expires: DateTime.Now.AddMinutes(60),
                     // This attaches our newly encrypted super secret key that was turned into sign on credentials.
                     signingCredentials: signingCredentials
-                    
+
                 );
 
                 // Generate our JWT and save the token as a string into a variable
@@ -117,6 +117,8 @@ namespace trivia_backend.Services
 
                 result.Token = tokenString;
                 result.userId = foundUser.Id;
+                result.Username = foundUser.Username;
+                result.Quizzes = foundUser.Quizzes;
             }
 
             return result;

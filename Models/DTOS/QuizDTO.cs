@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace trivia_backend.Models
+namespace trivia_backend.Models.DTOS
 {
-    public class QuizModel
+    public class QuizDTO
     {
         public int Id { get; set; }
-       
-        public int CreatorId { get; set; } // Foreign key
-        public UserModel? Creator { get; set; } // Navigation property
-
+        public int CreatorId { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }
@@ -20,8 +17,7 @@ namespace trivia_backend.Models
         public int? WinScore { get; set; }
         public string? WinMessage { get; set; }
         public string? LoseMessage { get; set; }
-        public Boolean IsDeleted { get; set; } 
 
-        public  List<QuestionModel>? Questions { get; set; } 
+        public List<QuestionDTO>? Questions { get; set; }
     }
 }

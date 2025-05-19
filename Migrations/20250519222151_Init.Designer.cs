@@ -12,7 +12,7 @@ using trivia_backend.Context;
 namespace trivia_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250429184934_Init")]
+    [Migration("20250519222151_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -42,9 +42,6 @@ namespace trivia_backend.Migrations
                     b.Property<int>("QuizId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("QuizModelId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
@@ -59,7 +56,7 @@ namespace trivia_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QuizModelId");
+                    b.HasIndex("QuizId");
 
                     b.ToTable("Questions");
                 });
@@ -93,9 +90,6 @@ namespace trivia_backend.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserModelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("WinMessage")
                         .HasColumnType("nvarchar(max)");
 
@@ -104,7 +98,7 @@ namespace trivia_backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserModelId");
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("Quizzes");
                 });
@@ -133,16 +127,24 @@ namespace trivia_backend.Migrations
 
             modelBuilder.Entity("trivia_backend.Models.QuestionModel", b =>
                 {
-                    b.HasOne("trivia_backend.Models.QuizModel", null)
+                    b.HasOne("trivia_backend.Models.QuizModel", "Quiz")
                         .WithMany("Questions")
-                        .HasForeignKey("QuizModelId");
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
                 });
 
             modelBuilder.Entity("trivia_backend.Models.QuizModel", b =>
                 {
-                    b.HasOne("trivia_backend.Models.UserModel", null)
+                    b.HasOne("trivia_backend.Models.UserModel", "Creator")
                         .WithMany("Quizzes")
-                        .HasForeignKey("UserModelId");
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
                 });
 
             modelBuilder.Entity("trivia_backend.Models.QuizModel", b =>

@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using trivia_backend.Models;
+using trivia_backend.Models.DTOS;
 using trivia_backend.Services;
 
 namespace trivia_backend.Controllers
@@ -36,7 +37,7 @@ namespace trivia_backend.Controllers
 
             if (quizzes == null || !quizzes.Any())
             {
-                return NotFound(new { message = $"No quizzes found with ID {id}." });
+                return NotFound(new { message = $"No quizzes found for creator with ID {id}." });
             }
 
             return Ok(quizzes);
@@ -44,19 +45,19 @@ namespace trivia_backend.Controllers
 
         [HttpPost("CreateQuiz")]
         [Authorize]
-        public async Task<IActionResult> CreateQuiz([FromBody] QuizModel quiz)
+        public async Task<IActionResult> CreateQuiz([FromBody] CreateQuizDTO quizDto)
         {
-            if (quiz == null)
+            if (quizDto == null)
             {
                 return BadRequest(new { message = "Quiz data is null." });
             }
 
-            if (quiz.CreatorId <= 0)
+            if (quizDto.CreatorId <= 0)
             {
                 return BadRequest(new { message = "Invalid Creator ID." });
             }
 
-            var result = await _quizServices.CreateQuiz(quiz);
+            var result = await _quizServices.CreateQuiz(quizDto);
 
             if (!result)
             {
@@ -68,19 +69,19 @@ namespace trivia_backend.Controllers
 
         [HttpPut("UpdateQuiz")]
         [Authorize]
-        public async Task<IActionResult> UpdateQuiz([FromBody] QuizModel quiz)
+        public async Task<IActionResult> UpdateQuiz([FromBody] QuizDTO quizDto)
         {
-            if (quiz == null)
+            if (quizDto == null)
             {
                 return BadRequest(new { message = "Quiz data is null." });
             }
 
-            if (quiz.CreatorId <= 0)
+            if (quizDto.CreatorId <= 0)
             {
                 return BadRequest(new { message = "Invalid Creator ID." });
             }
 
-            var result = await _quizServices.UpdateQuiz(quiz);
+            var result = await _quizServices.UpdateQuiz(quizDto);
 
             if (!result)
             {
