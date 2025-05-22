@@ -9,6 +9,7 @@ namespace trivia_backend.Models.DTOS
     {
         public int Id { get; set; }
         public int CreatorId { get; set; }
+        public string? CreatorUsername { get; set; } 
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }

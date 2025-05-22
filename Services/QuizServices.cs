@@ -70,6 +70,7 @@ namespace trivia_backend.Services
         {
             Id = quiz.Id,
             CreatorId = quiz.CreatorId,
+            CreatorUsername = quiz.Creator?.Username,
             Title = quiz.Title,
             Description = quiz.Description,
             ImageUrl = quiz.ImageUrl,
