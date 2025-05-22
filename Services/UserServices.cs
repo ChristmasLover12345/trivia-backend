@@ -118,7 +118,7 @@ namespace trivia_backend.Services
                 result.Token = tokenString;
                 result.userId = foundUser.Id;
                 result.Username = foundUser.Username;
-                result.Quizzes = foundUser.Quizzes;
+                
             }
 
             return result;
