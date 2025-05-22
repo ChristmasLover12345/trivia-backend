@@ -57,8 +57,9 @@ namespace trivia_backend.Services
             quiz.WinScore = quizDTO.WinScore;
             quiz.WinMessage = quizDTO.WinMessage;
             quiz.LoseMessage = quizDTO.LoseMessage;
+            quiz.IsDeleted = quizDTO.IsDeleted;
 
-            // Handle questions update - depends on your logic (add, update, delete)
+            
 
             _dataContext.Quizzes.Update(quiz);
             return await _dataContext.SaveChangesAsync() != 0;

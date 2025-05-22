@@ -8,7 +8,7 @@ namespace trivia_backend.Models.DTOS
     public class CreateQuizDTO
     {
         public int CreatorId { get; set; }
-        
+
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }
@@ -16,6 +16,7 @@ namespace trivia_backend.Models.DTOS
         public int? WinScore { get; set; }
         public string? WinMessage { get; set; }
         public string? LoseMessage { get; set; }
+        public Boolean IsDeleted { get; set; }
         public List<CreateQuestionDTO>? Questions { get; set; }
     }
 }

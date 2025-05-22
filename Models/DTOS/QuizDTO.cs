@@ -19,6 +19,8 @@ namespace trivia_backend.Models.DTOS
         public string? WinMessage { get; set; }
         public string? LoseMessage { get; set; }
 
+        public Boolean IsDeleted { get; set; }
+
         public List<QuestionDTO>? Questions { get; set; }
     }
 }
