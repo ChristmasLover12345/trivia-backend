@@ -44,6 +44,20 @@ namespace trivia_backend.Controllers
             return Ok(quizzes);
         }
 
+        [HttpGet("GetQuizById/{id}")]
+        [Authorize]
+        public async Task<IActionResult> getQuizById(int id)
+        {
+            var quiz = await _quizServices.GetQuizById(id);
+
+            if (quiz == null)
+            {
+                return NotFound(new { message = $"Quiz with ID {id} not found." });
+            }
+
+            return Ok(quiz);
+        }
+
         [HttpPost("CreateQuiz")]
         [Authorize]
         public async Task<IActionResult> CreateQuiz([FromBody] CreateQuizDTO quizDto)

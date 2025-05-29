@@ -33,6 +33,16 @@ namespace trivia_backend.Services
             return quizzes.Select(q => ToDTO(q)).ToList();
         }
 
+        public async Task<QuizDTO> GetQuizById(int id)
+        {
+            var quiz = await _dataContext.Quizzes
+                .Include(q => q.Questions)
+                .FirstOrDefaultAsync(q => q.Id == id);
+
+             return quiz != null ? ToDTO(quiz) : null;   
+
+        }
+
         public async Task<bool> CreateQuiz(CreateQuizDTO createQuizDTO)
         {
             var quiz = ToModel(createQuizDTO);
