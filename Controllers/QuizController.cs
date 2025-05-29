@@ -31,6 +31,7 @@ namespace trivia_backend.Controllers
         }
 
         [HttpGet("GetQuizzesById/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetQuizzesById(int id)
         {
             var quizzes = await _quizServices.GetQuizzesByCreatorId(id);

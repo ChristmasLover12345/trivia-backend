@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using trivia_backend.Models;
 using trivia_backend.Models.DTOS;
@@ -50,7 +51,11 @@ namespace trivia_backend.Controllers
             return Ok(result);
         }
 
+
+
+      
         [HttpGet("GetUser/{id}")]
+        [Authorize]
         public async Task<ActionResult> GetUserById(int id)
         {
             var user = await _userServices.GetUserById(id);
